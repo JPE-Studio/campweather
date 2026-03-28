@@ -53,6 +53,7 @@ Wetter-App ist vollständig funktionsfähig. Features:
 - Tag-Slider zum Navigieren durch die Woche
 - Favoriten suchen und hinzufügen (Open-Meteo Geocoding)
 - Favoriten entfernen
+- Safe Area Support für mobile Geräte (Notch/Home-Indicator)
 
 ## Session History
 
@@ -60,3 +61,4 @@ Wetter-App ist vollständig funktionsfähig. Features:
 |------|---------|
 | Initial | Template created with base setup |
 | 2026-03-28 | Wetter-App mit Karte, Favoriten und Wochenvorhersage implementiert |
+| 2026-03-28 | Safe Area Support für mobile Geräte (viewport-fit=cover, env(safe-area-inset-*)) |
