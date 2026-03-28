@@ -74,7 +74,7 @@ export default function WeatherApp() {
         </div>
       </header>
 
-      <div className="flex-1 relative">
+      <div style={{ flex: 1, position: "relative", minHeight: 0 }}>
         <WeatherMap
           favorites={favorites}
           weatherCache={weatherCache}

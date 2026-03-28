@@ -49,6 +49,11 @@ function FitBounds({ favorites }: { favorites: FavoriteLocation[] }) {
   const map = useMap();
 
   useEffect(() => {
+    setTimeout(() => map.invalidateSize(), 100);
+    setTimeout(() => map.invalidateSize(), 500);
+  }, [map]);
+
+  useEffect(() => {
     if (favorites.length === 0) {
       map.setView([51.1657, 10.4515], 5);
       return;
@@ -77,8 +82,7 @@ export default function WeatherMap({
     <MapContainer
       center={[51.1657, 10.4515]}
       zoom={5}
-      className="h-full w-full"
-      style={{ height: "100%", width: "100%" }}
+      style={{ height: "100%", width: "100%", position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
     >
       <TileLayer
         attribution='&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
