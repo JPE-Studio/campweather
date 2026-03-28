@@ -15,10 +15,11 @@ interface WeatherMapProps {
   onRemoveFavorite: (id: string) => void;
 }
 
-function createTempIcon(temp: number, isSelected: boolean): L.DivIcon {
+function createTempIcon(temp: number, weatherCode: number, isSelected: boolean): L.DivIcon {
   const color = getTemperatureColor(temp);
   const border = isSelected ? "3px solid #1d4ed8" : "2px solid rgba(0,0,0,0.2)";
-  const size = isSelected ? 56 : 48;
+  const size = isSelected ? 64 : 56;
+  const { icon } = getWeatherInfo(weatherCode);
 
   return L.divIcon({
     className: "temp-marker",
@@ -26,20 +27,21 @@ function createTempIcon(temp: number, isSelected: boolean): L.DivIcon {
       background: ${color};
       color: white;
       font-weight: bold;
-      font-size: 14px;
       width: ${size}px;
-      height: ${size}px;
-      border-radius: 50%;
+      border-radius: 12px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       border: ${border};
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       cursor: pointer;
       transition: transform 0.2s;
-    ">${Math.round(temp)}°</div>`,
-    iconSize: [size, size],
-    iconAnchor: [size / 2, size / 2],
+      padding: 2px 0;
+      line-height: 1;
+    "><span style="font-size:${isSelected ? 20 : 16}px">${icon}</span><span style="font-size:${isSelected ? 15 : 13}px">${Math.round(temp)}°</span></div>`,
+    iconSize: [size, size + 8],
+    iconAnchor: [size / 2, (size + 8) / 2],
   });
 }
 
@@ -107,7 +109,7 @@ export default function WeatherMap({
           return null;
         }
 
-        const icon = createTempIcon(temp, false);
+        const icon = createTempIcon(temp, weatherCode, false);
         const weatherInfo = getWeatherInfo(weatherCode);
 
         return (
