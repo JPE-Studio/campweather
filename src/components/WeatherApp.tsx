@@ -60,7 +60,10 @@ export default function WeatherApp() {
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
-      <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-3 shadow-lg z-10">
+      <header
+        className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-3 shadow-lg z-10"
+        style={{ paddingTop: "calc(0.75rem + var(--safe-area-top))" }}
+      >
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           <h1 className="text-xl font-bold">Wetterkarte</h1>
           <div className="flex gap-2">
@@ -83,7 +86,10 @@ export default function WeatherApp() {
           onRemoveFavorite={removeFavorite}
         />
 
-        <div className="absolute bottom-4 left-4 right-4 z-[1000]">
+        <div
+          className="absolute bottom-4 left-4 right-4 z-[1000]"
+          style={{ bottom: "calc(1rem + var(--safe-area-bottom))" }}
+        >
           <DaySlider selectedDay={selectedDay} onChange={setSelectedDay} />
         </div>
       </div>

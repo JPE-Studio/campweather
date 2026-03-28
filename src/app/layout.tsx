@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   description: "Wetter-App mit Favoriten und Wochenvorhersage auf der Karte",
 };
 
+export const viewport = {
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
