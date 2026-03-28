@@ -121,9 +121,6 @@ export default function WeatherMap({
             key={fav.id}
             position={[fav.latitude, fav.longitude]}
             icon={icon}
-            eventHandlers={{
-              click: () => onMarkerClick(fav),
-            }}
           >
             <Popup>
               <div className="text-center min-w-[140px]">
