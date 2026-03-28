@@ -7,23 +7,22 @@ import 'package:wetterkarte/src/services/favorites_repository.dart';
 import 'package:wetterkarte/src/services/open_meteo_service.dart';
 import 'package:wetterkarte/src/utils/weather_utils.dart';
 
-abstract class _CartoTile {
+abstract class _BaseMapTile {
   String get urlTemplate;
   List<String> get subdomains;
   String get attribution;
 }
 
-class _CartoLightAll implements _CartoTile {
+class _OpenStreetMapTile implements _BaseMapTile {
   @override
   String get urlTemplate =>
-      'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
+      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
   @override
   List<String> get subdomains => const ['a', 'b', 'c', 'd'];
 
   @override
-  String get attribution =>
-      '© OpenStreetMap contributors © CARTO';
+  String get attribution => '© OpenStreetMap contributors';
 }
 
 class WeatherMapScreen extends StatefulWidget {
@@ -35,7 +34,7 @@ class WeatherMapScreen extends StatefulWidget {
 
 class _WeatherMapScreenState extends State<WeatherMapScreen> {
   final MapController _mapController = MapController();
-  final _CartoTile _tile = _CartoLightAll();
+  final _BaseMapTile _tile = _OpenStreetMapTile();
   late final FavoritesRepository _favoritesRepository;
   final _openMeteoService = OpenMeteoService();
 
@@ -255,7 +254,6 @@ class _WeatherMarker extends StatelessWidget {
     final info = getWeatherInfo(weatherCode);
 
     final isSelected = selectedDay == 0;
-    final size = isSelected ? 64.0 : 56.0;
     final borderWidth = isSelected ? 3.0 : 2.0;
 
     return Semantics(
