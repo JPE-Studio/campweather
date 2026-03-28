@@ -76,7 +76,7 @@ class OpenMeteoService {
     }
 
     return WeatherData(
-      current: WeatherCurrent(
+      current: CurrentWeather(
         temperature: (current['temperature_2m'] as num).toDouble(),
         weatherCode: (current['weather_code'] as num).toInt(),
         windSpeed: (current['wind_speed_10m'] as num).toDouble(),
